@@ -1,0 +1,14 @@
+{
+  "name": "bulls-n-cows",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "game": "node index.js"
+  },
+  "author": "kondratiev.evg@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
