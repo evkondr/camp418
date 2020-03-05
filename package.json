@@ -1,0 +1,22 @@
+{
+  "name": "camp418",
+  "version": "1.0.0",
+  "description": "Preparatory tasks of Camp 418",
+  "main": "index.js",
+  "scripts": {
+    "game_1": "node bulls-n-cows",
+    "game_2": "node RPG-battle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evkondr/camp418.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evkondr/camp418/issues"
+  },
+  "homepage": "https://github.com/evkondr/camp418#readme",
+  "dependencies": {}
+}
