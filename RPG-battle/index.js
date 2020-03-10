@@ -4,11 +4,16 @@ let randomInt=(n)=>{
     return Math.floor(Math.random()*n)
 }
 let battle={
-    moves:0,   
+    moves:0,
+    blockedMoves:{
+        monster:[],
+        estafiy:[]
+    },
+    availableMoves:{
+        monster:[],
+        estafiy:[]
+    }    
 }
-
-monster.freezedMoves=[];
-estafiy.freezedMoves=[]
 
 let monsterMove=()=>{
     let r=randomInt(monster.moves.length)
@@ -18,18 +23,22 @@ let monsterMove=()=>{
     }
     console.log(`Мостр делает ${monster.moves[r].name}`)
 }
-let estafiyMove=()=>{
-    let r=randomInt(estafiy.moves.length)
-
-    if(monster.moves[r].cooldown>0){
-        freezedMoves.push(monster.moves[r])
+let estafiyMoves=()=>{
+    for(let i=0;i<estafiy.moves.length;i++){
+        if(!battle.blockedMoves.estafiy.find(estafiy.moves[i])){
+            battle.availableMoves.estafiy.push(estafiy.moves[i].name)
+        }else{
+            battle.availableMoves.estafiy.find()
+        }
     }
-    console.log(`Мостр делает ${monster.moves[r].name}`)
+    
 }
 const start=()=>{
     monsterMove()
-    let userName = readlineSync.question('? ');
+    estafiyMoves()
+    index = readlineSync.keyInSelect(animals, 'Which move?');
 
+    console.log()
 }
 
 start();
