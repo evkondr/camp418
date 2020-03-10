@@ -4,17 +4,9 @@ let randomInt=(n)=>{
     return Math.floor(Math.random()*n)
 }
 estafiy.availableMoves=[]
-let battle={
-    moves:0,
-    blockedMoves:{
-        monster:[],
-        estafiy:[]
-    },
-    availableMoves:{
-        monster:[],
-        estafiy:[]
-    }    
-}
+estafiy.blockedMoves=[]
+monster.availableMoves=[]
+monster.blockedMoves=[]
 
 let monsterMove=()=>{
     let r=randomInt(monster.moves.length)
@@ -25,20 +17,43 @@ let monsterMove=()=>{
     console.log(`Мостр делает ${monster.moves[r].name}`)
 }
 let estafiyMoves=(moveName)=>{
-    let availableMoves=[];
     for(let i=0;i<estafiy.moves.length;i++){
         if(moveName==estafiy.moves[i].name){
             return estafiy.moves[i]
         }
     }
 }
+function deleteFromAvailable(moveName){
+     let index=this.availableMoves.indexOf(moveName);
+     this.availableMoves.splice(index,1)
+}
+function deleteFromBlocked(){
+    if(this.blockedMoves.length>0){
+        this.blockedMoves.forEach((item,index)=>{
+            console.log(item.name, item.cooldown)
+            if(item.cooldown===0){
+                this.blockedMoves.splice(index,1)
+                this.availableMoves.push(item.name);
+            }
+            item.cooldown--
+        })
+    }
+}
 estafiy.moves.forEach(item=>{estafiy.availableMoves.push(item.name)})
+monster.moves.forEach(item=>{monster.availableMoves.push(item.name)})
+
 const start=()=>{
-   
-    let index = readlineSync.keyInSelect(estafiy.availableMoves, 'Which move?');
+    deleteFromBlocked.call(estafiy)
+
+    let index = readlineSync.keyInSelect(estafiy.availableMoves, `Чем ответит ${estafiy.name}`);
     let move=estafiyMoves(estafiy.availableMoves[index]);
-    
-    console.log(move)
+    if(move.cooldown>0){
+        estafiy.blockedMoves.push({name:move.name,cooldown:move.cooldown});
+        deleteFromAvailable.call(estafiy, move.name)
+    }
+
+    // console.log(estafiy.blockedMoves)
+    start()
 }
 
 start();
