@@ -3,6 +3,7 @@ const {monster,estafiy}=require('./heroes');
 let randomInt=(n)=>{
     return Math.floor(Math.random()*n)
 }
+estafiy.availableMoves=[]
 let battle={
     moves:0,
     blockedMoves:{
@@ -23,22 +24,21 @@ let monsterMove=()=>{
     }
     console.log(`Мостр делает ${monster.moves[r].name}`)
 }
-let estafiyMoves=()=>{
+let estafiyMoves=(moveName)=>{
+    let availableMoves=[];
     for(let i=0;i<estafiy.moves.length;i++){
-        if(!battle.blockedMoves.estafiy.find(estafiy.moves[i])){
-            battle.availableMoves.estafiy.push(estafiy.moves[i].name)
-        }else{
-            battle.availableMoves.estafiy.find()
+        if(moveName==estafiy.moves[i].name){
+            return estafiy.moves[i]
         }
     }
-    
 }
+estafiy.moves.forEach(item=>{estafiy.availableMoves.push(item.name)})
 const start=()=>{
-    monsterMove()
-    estafiyMoves()
-    index = readlineSync.keyInSelect(animals, 'Which move?');
-
-    console.log()
+   
+    let index = readlineSync.keyInSelect(estafiy.availableMoves, 'Which move?');
+    let move=estafiyMoves(estafiy.availableMoves[index]);
+    
+    console.log(move)
 }
 
 start();
