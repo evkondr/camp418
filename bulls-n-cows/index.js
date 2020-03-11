@@ -1,15 +1,15 @@
 const readlineSync = require('readline-sync');
 
 
-let attempts=3;
-
+let attempts=3; //Количество попыток
+// Функция получения числа
 const genNumber=()=>{
     let theNumber='';
-    let numRange=Math.floor(3+Math.random()*4)//min 3, max 6
+    let numRange=Math.floor(3+Math.random()*4) //Число от 4 до 6 разрядов
     for(let i=0;i<numRange;i++){
         let newN=randomInt();
-        if(theNumber.indexOf(newN)>=0){
-            while(theNumber.indexOf(newN)>=0){
+        if(theNumber.indexOf(newN)>=0){        //елси такое число уже есть в строке
+            while(theNumber.indexOf(newN)>=0){ //генерировать пока такое число есть в строке
                 newN=randomInt();
             }
         }
@@ -17,10 +17,12 @@ const genNumber=()=>{
     }
     return theNumber;
 }
+//Функция генерация целого числа 
 const randomInt=()=>{
     let num=Math.floor(Math.random()*10)
     return num.toString()
 }
+//Функция сравнения двух чисел
 const compare=(num1,num2)=>{
     let inplace=[];
     let outplace=[];
@@ -40,8 +42,7 @@ const compare=(num1,num2)=>{
 
 const start=()=>{
     let compNum=genNumber();
-    console.log(compNum)
-    const userNumber = readlineSync.question(`Введите число из ${compNum.length} различающихся цифр, и нажмите ENTER`);
+    const userNumber = readlineSync.question(`Введите число из ${compNum.length} различающихся цифр, и нажмите ENTER \n`);
     if(userNumber==compNum)return console.log('Число угадано!');
     if(attempts>0){
         console.log(compare(compNum, userNumber));
