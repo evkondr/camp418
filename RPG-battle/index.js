@@ -30,7 +30,7 @@ function deleteFromAvailable(moveName){
 function deleteFromBlocked(){
     if(this.blockedMoves.length>0){
         this.blockedMoves.forEach((item,index)=>{
-            console.log(item.name, item.cooldown)
+            console.log(`Заблокированые: ${item.name}: ${item.cooldown}`)
             if(item.cooldown===0){
                 this.blockedMoves.splice(index,1)
                 this.availableMoves.push(item.name);
@@ -51,8 +51,6 @@ const start=()=>{
         estafiy.blockedMoves.push({name:move.name,cooldown:move.cooldown});
         deleteFromAvailable.call(estafiy, move.name)
     }
-
-    // console.log(estafiy.blockedMoves)
     start()
 }
 
